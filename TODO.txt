@@ -1,0 +1,6 @@
+- Printf function & VGA stuff    [X]
+- GDT (Global table descriptor)  [X]
+- ISR                            [X]
+- BIOS32                         [ ]
+- VESA (1920x1080)               [ ]
+- IRQ & PIT                      [ ]
