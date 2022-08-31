@@ -1,38 +1,25 @@
 #pragma once
 
-struct gdt_entry_struct {
-   uint16_t limit_low;          
-   uint16_t base_low;            
-   uint8_t  base_middle;         
-   uint8_t  access;             
-   uint8_t  granularity;
-   uint8_t  base_high;           
-} __attribute__((packed));
+#include <stdint.h>
 
-typedef struct gdt_entry_struct gdt_entry_t; 
+#define NO_GDT_DESCRIPTORS     8
 
-struct gdt_ptr_struct {
-   uint16_t limit;               
-   uint32_t base;                
-} __attribute__((packed));
+typedef struct {
+   uint16_t segment_limit;
+   uint16_t base_low;      
+   uint8_t base_middle;    
+   uint8_t access;          
+   uint8_t granularity;     
+   uint8_t base_high;      
+} __attribute__((packed)) GDT;
 
-typedef struct gdt_ptr_struct gdt_ptr_t; 
+typedef struct {
+   uint16_t limit;       
+   uint32_t base_address;  
+} __attribute__((packed)) GDT_PTR;
 
-struct idt_entry_struct {
-   uint16_t base_lo;             
-   uint16_t sel;                 
-   uint8_t  always0;             
-   uint8_t  flags;              
-   uint16_t base_hi;            
-} __attribute__((packed));
-typedef struct idt_entry_struct idt_entry_t;
+extern void load_gdt(uint32_t gdt_ptr);
 
-struct idt_ptr_struct {
-   uint16_t limit;
-   uint32_t base;               
-} __attribute__((packed));
-typedef struct idt_ptr_struct idt_ptr_t;
+void gdt_set_entry(int index, uint32_t base, uint32_t limit, uint8_t access, uint8_t gran);
 
-void gdt_init(); 
-void gdt_set_gate(int, uint32_t, uint32_t, char, char);
-void init_descriptor_tables();
+void gdt_init();

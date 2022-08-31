@@ -8,6 +8,14 @@ int strlen(const char* str) {
     return i;
 }
 
+char to_uppercase(char c) {
+    return (char)c - 0x20;
+}
+
+char to_lowercase(char c) {
+    return (char)c + 0x20;
+}
+
 void reverse(char* str) {
     int c, i, j;
     for (i = 0, j = strlen(str)-1; i < j; i++, j--) {
@@ -40,3 +48,59 @@ void itoa(int num, char* str, int base) {
     str[i] = '\0';
     reverse(str);
 }
+
+// int n_tu(int number, int count) {
+//     int result = 1;
+//     while(count-- > 0)
+//         result *= number;
+
+//     return result;
+// }
+
+// void dtoa(float num, char* str) {
+//     long long int length, length2, i, number, position, sign;
+//     float number2;
+
+//     sign = -1;
+//     if (num< 0) {
+//         sign = '-';
+//         num *= -1;
+//     }
+
+//     number2 = num;
+//     number = num;
+//     length = 0;  
+//     length2 = 0; 
+
+//     while ((number2 - (float)number) != 0.0 && !((number2 - (float)number) < 0.0)) {
+//         number2 = num * (n_tu(10.0, length2 + 1));
+//         number = number2;
+
+//         length2++;
+//     }
+
+//     for (length = (num> 1) ? 0 : 1; num> 1; length++)
+//         num /= 10;
+
+//     position = length;
+//     length = length + 1 + length2;
+//     number = number2;
+
+//     if (sign == '-') {
+//         length++;
+//         position++;
+//     }
+
+//     for (i = length; i >= 0 ; i--) {
+//         if (i == (length))
+//             str[i] = '\0';
+//         else if(i == (position))
+//             str[i] = '.';
+//         else if(sign == '-' && i == 0)
+//             str[i] = '-';
+//         else {
+//             str[i] = (number % 10) + '0';
+//             number /= 10;
+//         }
+//     }
+// }

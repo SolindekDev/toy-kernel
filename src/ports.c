@@ -9,3 +9,7 @@ unsigned char inb(unsigned short port) {
 void outb(unsigned short port, unsigned char data) {
     __asm__("out %%al, %%dx" : : "a" (data), "d" (port));
 }
+
+void outw(unsigned short port, unsigned short data) {
+    __asm__("out %%ax, %%dx" : : "a" (data), "d" (port));
+}
