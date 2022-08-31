@@ -3,6 +3,7 @@
 #include <print.h>
 #include <kstring.h>
 #include <kmalloc.h>
+#include <syscalls.h>
 #include <stdint.h>
 #include <smbios.h>
 #include <ports.h>
@@ -76,11 +77,27 @@ void init_kernel() {
     ok_print("Timer initialized\n");
     swap_buffers();
 
+    syscalls_init();
+    ok_print("Syscalls enabled (0x80)\n");
+    swap_buffers();
+
     smbios_init();
     swap_buffers();
 
     ok_print("Starting to draw GUI\n");
     swap_buffers();
+
+    // char* hw = "Hello";
+    // registers_t* regs;
+    // regs->eax = 1;
+    // regs->ebx = 1;
+    // regs->ecx = (int)&hw;
+    // regs->edx = 0;
+    // regs->esi = 0;
+    // regs->edi = 0;
+    // regs->ebp = 0;
+    // syscall_handler(regs);
+    // swap_buffers();
 
     return;
 }

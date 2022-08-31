@@ -24,6 +24,7 @@ clang -m32 -c src/power.c -o bin/power.o -ffreestanding -O3 -I./include/
 clang -m32 -c src/gui.c -o bin/gui.o -ffreestanding -O3 -I./include/
 clang -m32 -c src/shell.c -o bin/shell.o -ffreestanding -O3 -I./include/
 clang -m32 -c src/kmalloc.c -o bin/kmalloc.o -ffreestanding -O3 -I./include/
+clang -m32 -c src/syscalls.c -o bin/syscalls.o -ffreestanding -O3 -I./include/
 
 # Compile assembler entry
 nasm -felf32 ./asm/exception.asm -o ./asm/exception.o
@@ -58,6 +59,7 @@ ld -m elf_i386 -T linker.ld asm/exception.o   \
                             bin/shell.o       \
                             bin/gui.o         \
                             bin/kmalloc.o     \
+                            bin/syscalls.o    \
                             bin/print.o -o bin/kernel.bin -nostdlib
 
 # Is bin/kernel.bin a x86 multiboot binary

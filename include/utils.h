@@ -22,6 +22,7 @@ typedef unsigned int UDItype	__attribute__ ((mode (DI)));
 
 #define ASSERT(cond) ((void)0)
 #define NULL ((void*)0)
+#define nullptr ((void*)0)
 
 void  unimplemented(char* msg);
 void* memcopy(void* dst, const void* src, int nbytes);
