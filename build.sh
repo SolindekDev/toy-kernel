@@ -79,4 +79,4 @@ cp grub.cfg isodir/boot/grub/grub.cfg
 grub-mkrescue -o ToyKernel.iso isodir
 
 # Run iso
-qemu-system-x86_64 -cdrom ToyKernel.iso -m 2G -monitor stdio -vga vmware
+qemu-system-x86_64 -cdrom ToyKernel.iso -m 2G -monitor stdio -vga vmware -drive file=fs.img,format=raw

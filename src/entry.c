@@ -89,6 +89,10 @@ void init_kernel() {
     ok_print("Starting to draw GUI\n");
     swap_buffers();
 
+    // ata_init();
+    // ok_print("ATA initialized\n");
+    // swap_buffers();
+
     return;
 }
 

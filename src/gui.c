@@ -19,6 +19,9 @@ void draw_nav() {
     draw_line(0, 25, get_width(), 25, 0xC4C2C2);
     draw_line(0, 24, get_width(), 24, 0xC4C2C2);
 
+    set_background_color(0xD6D6D6);
+    set_font_color(0x000000);
+
     if (type_nav == 1) {
         set_y(5);
         set_x(5);

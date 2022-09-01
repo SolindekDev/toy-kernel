@@ -25,6 +25,16 @@ void reverse(char* str) {
     }
 }
 
+int strcmp(const char *s1, char *s2) {
+    int i = 0;
+
+    while ((s1[i] == s2[i])) {
+        if (s2[i++] == 0)
+            return 0;
+    }
+    return 1;
+}
+
 void itoa(int num, char* str, int base) {
     int i = 0;
     bool is_neg = false;
@@ -47,6 +57,17 @@ void itoa(int num, char* str, int base) {
         str[i++] = '-';
     str[i] = '\0';
     reverse(str);
+}
+
+void pop_last_str(char* str) {
+    int len = strlen(str);
+    str[len-1] = '\0';
+}
+
+void append_str(char* str, char c) {
+    int len = strlen(str);
+    str[len] = c;
+    str[len + 1] = '\0';
 }
 
 // int n_tu(int number, int count) {
