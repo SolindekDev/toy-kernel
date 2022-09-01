@@ -332,18 +332,16 @@ const static SYSCALL_FUNC syscalls[SYSCALLS_LENGTH] = {
 };
 
 void syscall_handler(registers_t* regs) {
-    printf("siema");
-    swap_buffers();
     SYSCALL_FUNC syscall = syscalls[regs->eax];
 
-    printf("siema");
-    swap_buffers();
-
     if (syscall == nullptr) {
+        printf("syscall is not found %d\n", regs->eax);
+        swap_buffers();
         regs->eax = -1;
     }
 
-    printf("calling syscall (0x80): %d", regs->eax);
+    printf("calling syscall (0x80): 0x%x\n", regs->eax);
+    swap_buffers();
     int syscall_return;
     syscall(
         &syscall_return,
@@ -355,6 +353,7 @@ void syscall_handler(registers_t* regs) {
         regs->edi,
         regs->ebp
     );
+    asm volatile("ret" : : "a"(syscall_return));
     // TODO: set syscall_return to real eax register
 }
 
@@ -370,5 +369,6 @@ void sys_write(int* syscall_return, int eax, int ebx, int ecx, int edx, int esi,
     for (int i = 0; i < count; i++)
         printf("%c", buf[i]);
 
+    swap_buffers();
     *syscall_return = 1;
 } 

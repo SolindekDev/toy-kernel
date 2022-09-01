@@ -18,6 +18,8 @@
 #include <gdt.h>
 #include <isr.h>
 
+extern int sys_write_test(char*);
+
 MULTIBOOT_INFO *mboot_info;
 
 void ok_print(char* str) {
@@ -86,18 +88,6 @@ void init_kernel() {
 
     ok_print("Starting to draw GUI\n");
     swap_buffers();
-
-    // char* hw = "Hello";
-    // registers_t* regs;
-    // regs->eax = 1;
-    // regs->ebx = 1;
-    // regs->ecx = (int)&hw;
-    // regs->edx = 0;
-    // regs->esi = 0;
-    // regs->edi = 0;
-    // regs->ebp = 0;
-    // syscall_handler(regs);
-    // swap_buffers();
 
     return;
 }

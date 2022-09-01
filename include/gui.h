@@ -1,7 +1,6 @@
 #pragma once
 
-#define CURSOR_OUTLINE_COLOR 0x000000
-#define CURSOR_BG_COLOR      0x000000
+#define CURSOR_BG_COLOR      0xF2F2F2
 
 #define NAVBAR_COLOR         0x232B4A
 

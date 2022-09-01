@@ -8,6 +8,7 @@
 #include <mouse.h>
 #include <cmos.h>
 #include <kmath.h>
+#include <terminal.h>
 #include <print.h>
 
 MULTIBOOT_INFO *mboot_info_cp;
@@ -75,27 +76,6 @@ void loop_(unsigned long addr) {
         swap_buffers();
         frame_count = 0;
     }
-}
-
-void draw_terminal() {
-    draw_rect(
-        0, 
-        45, 
-        get_width(), 
-        get_height() - 45, 
-        0x25232B);
-
-    draw_rect(
-        0, 
-        25,
-        get_width(),
-        20,
-        0xD6D6D6
-    );
-
-    set_x(5);
-    set_y(25 + 2);
-    printf("Terminal");
 }
 
 void draw_desktop() {

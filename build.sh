@@ -25,6 +25,7 @@ clang -m32 -c src/gui.c -o bin/gui.o -ffreestanding -O3 -I./include/
 clang -m32 -c src/shell.c -o bin/shell.o -ffreestanding -O3 -I./include/
 clang -m32 -c src/kmalloc.c -o bin/kmalloc.o -ffreestanding -O3 -I./include/
 clang -m32 -c src/syscalls.c -o bin/syscalls.o -ffreestanding -O3 -I./include/
+clang -m32 -c src/terminal.c -o bin/terminal.o -ffreestanding -O3 -I./include/
 
 # Compile assembler entry
 nasm -felf32 ./asm/exception.asm -o ./asm/exception.o
@@ -32,34 +33,37 @@ nasm -felf32 ./asm/idt.asm -o ./asm/idt.o
 nasm -felf32 ./asm/irq.asm -o ./asm/irq.o
 nasm -felf32 ./asm/gdt.asm -o ./asm/gdt.o
 nasm -felf32 ./asm/loader.asm -o ./asm/loader.o
+nasm -felf32 ./asm/syscalls_test.asm -o ./asm/syscalls_test.o
 
 # Link all files
-ld -m elf_i386 -T linker.ld asm/exception.o   \
-                            asm/irq.o         \
-                            asm/gdt.o         \
-                            asm/idt.o         \
-                            asm/loader.o      \
-                            bin/utils.o       \
-                            bin/8259_pic.o    \
-                            bin/kmath.o       \
-                            bin/gdt.o         \
-                            bin/graphics.o    \
-                            bin/idt.o         \
-                            bin/isr.o         \
-                            bin/kstring.o     \
-                            bin/ports.o       \
-                            bin/keycodes.o    \
-                            bin/keyboard.o    \
-                            bin/cmos.o        \
-                            bin/entry.o       \
-                            bin/mouse.o       \
-                            bin/smbios.o      \
-                            bin/power.o       \
-                            bin/timer.o       \
-                            bin/shell.o       \
-                            bin/gui.o         \
-                            bin/kmalloc.o     \
-                            bin/syscalls.o    \
+ld -m elf_i386 -T linker.ld asm/exception.o        \
+                            asm/irq.o              \
+                            asm/gdt.o              \
+                            asm/idt.o              \
+                            asm/loader.o           \
+                            asm/syscalls_test.o    \
+                            bin/utils.o            \
+                            bin/8259_pic.o         \
+                            bin/kmath.o            \
+                            bin/gdt.o              \
+                            bin/graphics.o         \
+                            bin/idt.o              \
+                            bin/isr.o              \
+                            bin/kstring.o          \
+                            bin/ports.o            \
+                            bin/keycodes.o         \
+                            bin/keyboard.o         \
+                            bin/cmos.o             \
+                            bin/entry.o            \
+                            bin/mouse.o            \
+                            bin/smbios.o           \
+                            bin/power.o            \
+                            bin/timer.o            \
+                            bin/shell.o            \
+                            bin/gui.o              \
+                            bin/kmalloc.o          \
+                            bin/syscalls.o         \
+                            bin/terminal.o         \
                             bin/print.o -o bin/kernel.bin -nostdlib
 
 # Is bin/kernel.bin a x86 multiboot binary
